@@ -67,7 +67,6 @@ public class Document {
         content.remove(index);
     }
 
-
     private static String escape(String s) {
         return s.replace("\\","\\\\").replace("|","\\|");
     }

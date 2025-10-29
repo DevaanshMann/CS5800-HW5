@@ -25,16 +25,17 @@ public class CharacterStyle {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof CharacterStyle)) return false;
-        CharacterStyle that = (CharacterStyle) o;
+        if (!(o instanceof CharacterStyle that)) return false;
         return size == that.size &&
                 Objects.equals(font, that.font) &&
                 Objects.equals(color, that.color);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(font, size, color);
     }
+
     @Override
     public String toString() {
         return "Style(" + font + ", " + size + ", " + color + ")";
