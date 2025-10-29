@@ -6,9 +6,33 @@ import org.junit.jupiter.api.Test;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+
+import java.io.OutputStream;
+import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProxyTest {
+
+    private static PrintStream ORIG_OUT;
+    private static PrintStream ORIG_ERR;
+
+    @BeforeAll
+    static void muteConsole() {
+        ORIG_OUT = System.out;
+        ORIG_ERR = System.err;
+        PrintStream devNull = new PrintStream(OutputStream.nullOutputStream());
+        System.setOut(devNull);
+        System.setErr(devNull);
+    }
+
+    @AfterAll
+    static void restoreConsole() {
+        System.setOut(ORIG_OUT);
+        System.setErr(ORIG_ERR);
+    }
 
     private FakeSongService fake;
     private CachedSongServiceProxy proxy;
