@@ -39,18 +39,15 @@ class ProxyTest {
 
     @BeforeEach
     void setUp() {
-        // Seed some songs
         List<Song> seed = List.of(
-                new Song(1, "Skyline",     "Aria Volt",   "Horizons",   212),
-                new Song(2, "Night Drive", "Neon Street", "Night Drive",198),
-                new Song(3, "Starlit",     "Aria Volt",   "Horizons",   244),
-                new Song(4, "Observer",    "GoF",         "Patterns",   190)
+                new Song(1, "Hells Bells",     "AC/DC","Black In Black",   212),
+                new Song(2, "For A Reason", "Karan Aujla","P-Pop Culture",198),
+                new Song(3, "Starlit",     "Aria Volt","Horizons",   244),
+                new Song(4, "Charmer",    "Diljit Dosanjh","Aura",   190)
         );
         fake  = new FakeSongService(seed);
         proxy = new CachedSongServiceProxy(fake);
     }
-
-    // --- ID CACHING ---
 
     @Test
     void searchByID_caches_byId() {
@@ -67,7 +64,6 @@ class ProxyTest {
         proxy.searchByID(2);
         proxy.searchByID(1);
 
-        // id=1 should be called once (cached), id=2 once
         assertEquals(2, fake.byIdCalls.get(), "Two distinct ids -> two delegate hits total");
     }
 
@@ -79,7 +75,6 @@ class ProxyTest {
 
         assertNull(s1);
         assertNull(s2);
-        // Because nulls aren't cached, delegate is called twice
         assertEquals(2, fake.byIdCalls.get(), "Unknown id shouldn't be cached (two delegate calls)");
     }
 
@@ -89,8 +84,6 @@ class ProxyTest {
         assertNull(s);
         assertEquals(0, fake.byIdCalls.get(), "Null id should not call delegate");
     }
-
-    // --- TITLE CACHING ---
 
     @Test
     void searchByTitle_caches_listResults() {
@@ -103,9 +96,7 @@ class ProxyTest {
 
     @Test
     void searchByTitle_caseInsensitive_key() {
-        // First call is lowercase
         List<Song> a = proxy.searchByTitle("night");
-        // Second call is different case (should hit cache if proxy normalizes)
         List<Song> b = proxy.searchByTitle("NiGhT");
 
         assertEquals(a, b);
@@ -120,8 +111,6 @@ class ProxyTest {
         assertTrue(res.isEmpty());
         assertEquals(0, fake.byTitleCalls.get());
     }
-
-    // --- ALBUM CACHING ---
 
     @Test
     void searchByAlbum_caches_listResults() {
@@ -150,12 +139,6 @@ class ProxyTest {
         assertEquals(0, fake.byAlbumCalls.get());
     }
 
-    // --- FAKE IMPLEMENTATION FOR TESTING ---
-
-    /**
-     * Simple in-memory SongService that records how many times each method is called,
-     * and performs contains() filtering for title/album.
-     */
     private static class FakeSongService implements SongService {
         private final Map<Integer, Song> byId = new HashMap<>();
         private final List<Song> all;

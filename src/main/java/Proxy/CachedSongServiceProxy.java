@@ -7,7 +7,6 @@ import java.util.Map;
 public class CachedSongServiceProxy implements SongService {
     private final SongService songService;
 
-    // Caches
     private final Map<Integer, Song> byIdCache = new HashMap<>();
     private final Map<String, List<Song>> byTitleCache = new HashMap<>();
     private final Map<String, List<Song>> byAlbumCache = new HashMap<>();
@@ -45,8 +44,8 @@ public class CachedSongServiceProxy implements SongService {
 
         System.out.println("[real ] title='" + title + "'");
         List<Song> res = songService.searchByTitle(title);
-        if (res == null) res = List.of();   // never cache null
-        byTitleCache.put(key, res);         // <-- store List<Song>, not Song
+        if (res == null) res = List.of();
+        byTitleCache.put(key, res);
         return res;
     }
 
@@ -63,8 +62,8 @@ public class CachedSongServiceProxy implements SongService {
 
         System.out.println("[real ] album='" + album + "'");
         List<Song> res = songService.searchByAlbum(album);
-        if (res == null) res = List.of();   // never cache null
-        byAlbumCache.put(key, res);         // <-- store List<Song>, not Song
+        if (res == null) res = List.of();
+        byAlbumCache.put(key, res);
         return res;
     }
 }
