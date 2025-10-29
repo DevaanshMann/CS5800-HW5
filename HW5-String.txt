@@ -1,0 +1,16 @@
+H|Calibri|14|Blue
+e|Calibri|14|Blue
+l|Verdana|16|Black
+l|Arial|12|Black
+o|Arial|12|Black
+W|Calibri|14|Blue
+o|Verdana|16|Black
+r|Arial|12|Black
+l|Arial|12|Black
+d|Handwritten|18|Yellow
+C|Verdana|16|Black
+S|Handwritten|18|Yellow
+5|Script|10|Green
+8|Calibri|14|Blue
+0|Verdana|16|Black
+0|Script|10|Green

@@ -1,6 +1,5 @@
 package Proxy;
 
-// ProxyDemo.java (Driver)
 import java.util.*;
 
 public class ProxyDriver {
@@ -18,17 +17,14 @@ public class ProxyDriver {
         SongService real = new RealSongService(seed);
         SongService svc  = new CachedSongServiceProxy(real);
 
-        // 1) ID lookups (first = slow, second = fast)
         System.out.println(svc.searchByID(3));
-        System.out.println(svc.searchByID(3));
+        System.out.println(svc.searchByID(1));
 
-        // 2) Title search (cache hit on second call)
         System.out.println(svc.searchByTitle("Night"));
         System.out.println(svc.searchByTitle("Night"));
 
-        // 3) Album search (cache hit on second call)
         System.out.println(svc.searchByAlbum("Horizons"));
-        System.out.println(svc.searchByAlbum("Horizons"));
+        System.out.println(svc.searchByAlbum("Patterns"));
     }
 }
 
