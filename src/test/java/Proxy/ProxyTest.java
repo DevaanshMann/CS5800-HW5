@@ -42,7 +42,7 @@ class ProxyTest {
         List<Song> seed = List.of(
                 new Song(1, "Hells Bells",     "AC/DC","Black In Black",   212),
                 new Song(2, "For A Reason", "Karan Aujla","P-Pop Culture",198),
-                new Song(3, "Starlit",     "Aria Volt","Horizons",   244),
+                new Song(3, "Starlit",     "Aria Volt","Horizons.",   244),
                 new Song(4, "Charmer",    "Diljit Dosanjh","Aura",   190)
         );
         fake  = new FakeSongService(seed);

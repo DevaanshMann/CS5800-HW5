@@ -7,7 +7,7 @@ public class ProxyDriver {
         List<Song> seed = List.of(
                 new Song(1, "Hells Bells",     "AC/DC","Black In Black",   212),
                 new Song(2, "For A Reason", "Karan Aujla","P-Pop Culture",198),
-                new Song(3, "Starlit",     "Aria Volt","Horizons",   244),
+                new Song(3, "Starlit",     "Aria Volt","Horizons.",   244),
                 new Song(4, "Driftwood", "Calm Seas", "Harbor", 186),
                 new Song(5, "Night Drive", "Neon Street", "Night Drive", 205),
                 new Song(6, "Hello World", "CS5800", "Patterns", 180),
